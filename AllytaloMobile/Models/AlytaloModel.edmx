@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlytaloMobilModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lampotila">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lampotila Huone 1" Type="int" />
+          <Property Name="Lampotila Huone 2" Type="int" />
+          <Property Name="Lampotila Huone 3" Type="int" />
+          <Property Name="Lampotila Huone 4" Type="int" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Huone 1" Type="int" />
+          <Property Name="Huone 2" Type="int" />
+          <Property Name="Huone 3" Type="int" />
+          <Property Name="Huone 4" Type="int" />
+        </EntityType>
+        <Association Name="FK_Valot_Lampotila">
+          <End Role="Lampotila" Type="Self.Lampotila" Multiplicity="1" />
+          <End Role="Valot" Type="Self.Valot" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lampotila">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Valot">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlytaloMobilModelStoreContainer">
+          <EntitySet Name="Lampotila" EntityType="Self.Lampotila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valot" EntityType="Self.Valot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Valot_Lampotila" Association="Self.FK_Valot_Lampotila">
+            <End Role="Lampotila" EntitySet="Lampotila" />
+            <End Role="Valot" EntitySet="Valot" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlytaloMobilModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lampotila">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lampotila_Huone_1" Type="Int32" />
+          <Property Name="Lampotila_Huone_2" Type="Int32" />
+          <Property Name="Lampotila_Huone_3" Type="Int32" />
+          <Property Name="Lampotila_Huone_4" Type="Int32" />
+          <NavigationProperty Name="Valot" Relationship="Self.FK_Valot_Lampotila" FromRole="Lampotila" ToRole="Valot" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Huone_1" Type="Int32" />
+          <Property Name="Huone_2" Type="Int32" />
+          <Property Name="Huone_3" Type="Int32" />
+          <Property Name="Huone_4" Type="Int32" />
+          <NavigationProperty Name="Lampotila" Relationship="Self.FK_Valot_Lampotila" FromRole="Valot" ToRole="Lampotila" />
+        </EntityType>
+        <Association Name="FK_Valot_Lampotila">
+          <End Role="Lampotila" Type="Self.Lampotila" Multiplicity="1" />
+          <End Role="Valot" Type="Self.Valot" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lampotila">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Valot">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlytaloMobilEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lampotila" EntityType="Self.Lampotila" />
+          <EntitySet Name="Valot" EntityType="Self.Valot" />
+          <AssociationSet Name="FK_Valot_Lampotila" Association="Self.FK_Valot_Lampotila">
+            <End Role="Lampotila" EntitySet="Lampotila" />
+            <End Role="Valot" EntitySet="Valot" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlytaloMobilModelStoreContainer" CdmEntityContainer="AlytaloMobilEntities">
+          <EntitySetMapping Name="Lampotila">
+            <EntityTypeMapping TypeName="AlytaloMobilModel.Lampotila">
+              <MappingFragment StoreEntitySet="Lampotila">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Lampotila_Huone_1" ColumnName="Lampotila Huone 1" />
+                <ScalarProperty Name="Lampotila_Huone_2" ColumnName="Lampotila Huone 2" />
+                <ScalarProperty Name="Lampotila_Huone_3" ColumnName="Lampotila Huone 3" />
+                <ScalarProperty Name="Lampotila_Huone_4" ColumnName="Lampotila Huone 4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valot">
+            <EntityTypeMapping TypeName="AlytaloMobilModel.Valot">
+              <MappingFragment StoreEntitySet="Valot">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Huone_1" ColumnName="Huone 1" />
+                <ScalarProperty Name="Huone_2" ColumnName="Huone 2" />
+                <ScalarProperty Name="Huone_3" ColumnName="Huone 3" />
+                <ScalarProperty Name="Huone_4" ColumnName="Huone 4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
